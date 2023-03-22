@@ -14,7 +14,7 @@ client.once(Events.ClientReady, onReady);
 
 function onReady(c) {
 console.log(`${c.user.tag} is now Online! 🥳 🎉`);
-client.user.setActivity('Magic 8 Ball 🎱', { type: ActivityType.Playing });
+client.user.setActivity('The Magic 8 Ball 🎱', { type: ActivityType.Watching });
 client.user.setStatus('online');
 };
 
