@@ -1,3 +1,5 @@
+//Rules Embed: https://kortlink.dk/2kdbz
+
 const { Client, Events, GatewayIntentBits, ActivityType} = require('discord.js');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.DirectMessages,
@@ -22,7 +24,7 @@ client.on(Events.MessageCreate, onMessage);
 
 function onMessage(msg) {
     if (msg.author.bot) return;
-    if(msg.content.includes("hej")) {
+    if(msg.content.toLowerCase().includes("hej")) {
         msg.reply("Hej med dig 😃")
     }
 }
