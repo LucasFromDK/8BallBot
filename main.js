@@ -8,7 +8,7 @@ GatewayIntentBits.GuildMessages, ], partials: ['MESSAGE', 'CHANNEL']
 
 require('dotenv').config(); //Loads .env
 
-//Makes bot go online
+//Makes bot go online, 🎉
 client.login(process.env.Bot_Token);
 //
 
