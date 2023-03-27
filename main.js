@@ -29,5 +29,20 @@ function onMessage(msg) {
         let response = responses[Math.floor(Math.random() * responses.length)]
         msg.reply(response)
         console.log("Random Answer: " + response)
+    } else if(msg.content.toLowerCase().includes("!roll")) {
+        args = msg.split(" +/") //Converts to Arguments
+        args.shift().toLowerCase() //Makes it lowercase
+
+        const numbers = ["https://media.tenor.com/Welm8xB9ixQAAAAC/zero-no.gif", //Zero
+                        "https://media.tenor.com/mRsNLeYI_qIAAAAC/only-one-alone-there-can-be-only-one.gif", //One
+                        "https://media.tenor.com/W7wOWaM9zP4AAAAd/dancing-justin-h-min.gif", //Two
+                        "https://media.tenor.com/oRFRlKfQtHwAAAAC/fist-fight-ice-cube.gif", //Three
+                        "https://media.tenor.com/QHxQ6xqJTZQAAAAC/four-four-fingers-up.gif", //Four
+                        "https://media.tenor.com/8dfMnQGTqtIAAAAC/five-number5.gif", //Five
+                        "https://media.tenor.com/nhqm85B6XmsAAAAC/number-six.gif", //Six
+                        "https://media.tenor.com/Kp8Spq2GRV4AAAAd/seven-sette.gif", //Seven
+                        "https://media.tenor.com/c0j8qvkYhY0AAAAd/dracula-eight.gif", //Eight
+                        "https://media.tenor.com/RBS0zRlT2oUAAAAC/nine-number-nine.gif", //Nine
+                        "https://media.tenor.com/PwVvhNmOHcEAAAAC/ten-score.gif"] //Ten
     }
 }
