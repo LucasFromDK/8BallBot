@@ -1,6 +1,6 @@
 //Rules Embed: https://kortlink.dk/2kdbz
 
-const { Client, Collection, Events, GatewayIntentBits, ActivityType} = require('discord.js');
+const { Client, Events, GatewayIntentBits, ActivityType} = require('discord.js');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.DirectMessages, GatewayIntentBits.GuildMessages], partials: ['MESSAGE', 'CHANNEL']});
 
