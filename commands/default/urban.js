@@ -1,3 +1,6 @@
+//https://discordjs.guide/additional-info/rest-api.html#urban-dictionary
+//https://github.com/discordjs/guide/blob/main/code-samples/additional-info/rest-api/14/index.js
+
 const { SlashCommandBuilder } = require('discord.js');
 const trim = (str, max) => (str.length > max ? `${str.slice(0, max - 3)}...` : str);
 
