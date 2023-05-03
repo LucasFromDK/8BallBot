@@ -9,7 +9,7 @@ module.exports = {
 		.addStringOption(option =>
 			option.setName('input')
 				.setDescription('The input you want to store for the next call.')
-				.setRequired(false)
+				.setRequired(true)
 		),
 	async execute(interaction) {
 		const input = interaction.options.getString('input');
