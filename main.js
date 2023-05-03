@@ -2,7 +2,7 @@ const { token } = require('./config.json')
 const path = require('node:path');
 const fs = require('node:fs');
 
-const { Client, Collection, Events, GatewayIntentBits, ActivityType } = require('discord.js');
+const { Client, Collection, Events, GatewayIntentBits, ActivityType, EmbedBuilder } = require('discord.js');
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.DirectMessages, GatewayIntentBits.GuildMessages], partials: ['MESSAGE', 'CHANNEL']});
 
 
