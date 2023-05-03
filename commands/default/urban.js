@@ -8,27 +8,27 @@ const { request } = require('undici');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('urban')
-		.setDescription('Replies with Urban Dictionary')
-        .addStringOption(option =>
-			option.setName('term')
-				.setDescription('The term you want to know the meaning of.')
-				.setRequired(false)
+		.setDescription('Replies with the Urban Dictionary definition of a word or term.')
+		.addStringOption(option =>
+			option.setName('input')
+				.setDescription('The word or term you want to know the meaning of.')
+				.setRequired(true)
 		),
 	async execute(interaction) {
-		const term = interaction.options.getString('term');
+		const term = interaction.options.getString('input');
 		const query = new URLSearchParams({ term });
 
 		const dictResult = await request(`https://api.urbandictionary.com/v0/define?${query}`);
 		const { list } = await dictResult.body.json();
 
 		if (!list.length) {
-			return interaction.editReply(`No results found for **${term}**.`);
+			return interaction.reply(`No results found for **${term}**.`);
 		}
 
-        const [answer] = list;
+		const [answer] = list;
 
 		const embed = new EmbedBuilder()
-			.setColor(0xEFFF00)
+			.setColor(0x5865F2)
 			.setTitle(answer.word)
 			.setURL(answer.permalink)
 			.addFields(
@@ -36,9 +36,10 @@ module.exports = {
 				{ name: 'Example', value: trim(answer.example, 1024) },
 				{
 					name: 'Rating',
-					value: `${answer.thumbs_up} thumbs up. ${answer.thumbs_down} thumbs down.`,
+					value: `**${answer.thumbs_up}** 👍 and **${answer.thumbs_down}** 👎.`,
 				},
 			);
-		interaction.editReply({ embeds: [embed] });
+
+		interaction.reply({ embeds: [embed] });
 	}
 };

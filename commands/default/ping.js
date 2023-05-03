@@ -5,7 +5,7 @@ module.exports = {
 		.setName('ping')
 		.setDescription('Replies with Pong!'),
 	async execute(interaction) {
-		const ping = Date.now() - interaction.createdTimestamp;
+		const ping = Math.abs(Date.now() - interaction.createdTimestamp);
 		await interaction.reply(`Pong 🏓, Bot Ping: **${ping}ms**`);
 	},
 };
