@@ -1,2 +1,2 @@
-# DiscordBotV2
+# 8BallBot
 A Discord Bot
