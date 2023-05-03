@@ -1,18 +1,27 @@
 {
-  "name": "discordbotv2",
+  "name": "8ballbot",
   "version": "1.0.0",
-  "description": "A Discord Bot",
+  "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "node .": "node run main.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "LucasFromDK",
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Christofferelo/8BallBot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Christofferelo/8BallBot/issues"
+  },
+  "homepage": "https://github.com/Christofferelo/8BallBot#readme",
   "dependencies": {
     "discord.js": "^14.8.0",
     "dotenv": "^16.0.3",
-    "fs": "^0.0.1-security"
+    "events": "^3.3.0",
+    "fs": "^0.0.1-security",
+    "loader": "^2.1.1"
   },
   "devDependencies": {
     "eslint": "^8.36.0"

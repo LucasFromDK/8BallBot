@@ -1,49 +1,57 @@
-//Rules Embed: https://kortlink.dk/2kdbz
+const { token } = require('./config.json')
+const path = require('node:path');
+const fs = require('node:fs');
 
-const { Client, Events, GatewayIntentBits, ActivityType} = require('discord.js');
-
+const { Client, Collection, Events, GatewayIntentBits, ActivityType } = require('discord.js');
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.DirectMessages, GatewayIntentBits.GuildMessages], partials: ['MESSAGE', 'CHANNEL']});
 
-require('dotenv').config(); //Loads .env
 
-//Makes bot go online, 🎉
-client.login(process.env.Bot_Token);
-//
-
+client.login(token);
 client.once(Events.ClientReady, onReady);
 
 function onReady(c) {
-console.log(`${c.user.tag} is now Online! 🥳 🎉`);
-client.user.setActivity('The Magic 8 Ball 🎱', { type: ActivityType.Watching }); //Options: Watching, Playing, Streaming, Listening, Competing
-client.user.setStatus('online'); //Options: online, idle, dnd, invisible
-};
+	console.log(`${c.user.tag} is now Online! 🥳 🎉`);
+	client.user.setActivity('The Magic 8 Ball 🎱', { type: ActivityType.Watching }); //Options: Watching, Playing, Streaming, Listening, Competing
+	client.user.setStatus('online'); //Options: online, idle, dnd, invisible
+	};
 
-client.on(Events.MessageCreate, onMessage);
+client.commands = new Collection();
+const foldersPath = path.join(__dirname, 'commands');
+const commandFolders = fs.readdirSync(foldersPath);
 
-function onMessage(msg) {
-    if (msg.author.bot) return;
-    if(msg.content.toLowerCase().includes("!help")) {
-        msg.reply("**Commands:**\n<@1088016851403026462> !ask (Question) \nMore Commands Coming Soon")
-    } else if(msg.content.toLowerCase().includes("!ask")) {
-        const responses = ["It is certain", "It is decidedly so", "Without a doubt", "Yes definitely", "You may rely on it", "As I see it, yes", "Most likely", "Outlook good", "Yes", "Signs point to yes", "Reply hazy, try again", "	Ask again later", "Better not tell you now", "Cannot predict now", "Concentrate and ask again", "Don’t count on it", "My reply is no", "My sources say no", "Outlook not so good", "Very doubtful"]
-        let response = responses[Math.floor(Math.random() * responses.length)]
-        msg.reply(response)
-        console.log("User Asked: " + msg.content +", Random Answer: " + response)
-
-    } else if(msg.content.toLowerCase().includes("!roll")) {
-        args = msg.split(" +/") //Converts to Arguments
-        args.shift().toLowerCase() //Makes it lowercase
-
-        const numbers = ["https://media.tenor.com/Welm8xB9ixQAAAAC/zero-no.gif", //Zero
-                        "https://media.tenor.com/mRsNLeYI_qIAAAAC/only-one-alone-there-can-be-only-one.gif", //One
-                        "https://media.tenor.com/W7wOWaM9zP4AAAAd/dancing-justin-h-min.gif", //Two
-                        "https://media.tenor.com/oRFRlKfQtHwAAAAC/fist-fight-ice-cube.gif", //Three
-                        "https://media.tenor.com/QHxQ6xqJTZQAAAAC/four-four-fingers-up.gif", //Four
-                        "https://media.tenor.com/8dfMnQGTqtIAAAAC/five-number5.gif", //Five
-                        "https://media.tenor.com/nhqm85B6XmsAAAAC/number-six.gif", //Six
-                        "https://media.tenor.com/Kp8Spq2GRV4AAAAd/seven-sette.gif", //Seven
-                        "https://media.tenor.com/c0j8qvkYhY0AAAAd/dracula-eight.gif", //Eight
-                        "https://media.tenor.com/RBS0zRlT2oUAAAAC/nine-number-nine.gif", //Nine
-                        "https://media.tenor.com/PwVvhNmOHcEAAAAC/ten-score.gif"] //Ten
-    }
+for (const folder of commandFolders) {
+	const commandsPath = path.join(foldersPath, folder);
+	const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+	for (const file of commandFiles) {
+		const filePath = path.join(commandsPath, file);
+		const command = require(filePath);
+		// Set a new item in the Collection with the key as the command name and the value as the exported module
+		if ('data' in command && 'execute' in command) {
+			client.commands.set(command.data.name, command);
+		} else {
+			console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+		}
+	}
 }
+
+client.on(Events.InteractionCreate, async interaction => {
+    if (!interaction.isChatInputCommand()) return;
+
+    const command = interaction.client.commands.get(interaction.commandName);
+
+	if (!command) {
+		console.error(`No command matching ${interaction.commandName} was found.`);
+		return;
+	}
+
+	try {
+		await command.execute(interaction);
+	} catch (error) {
+		console.error(error);
+		if (interaction.replied || interaction.deferred) {
+			await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
+		} else {
+			await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+		}
+	}
+});
