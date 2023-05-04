@@ -6,7 +6,7 @@ module.exports = {
 	.setDescription('Tells you a joke.'),
 
 	async execute(interaction) {
-		const responses = ["Work In Progress"]
+		const responses = ["Yesterday I saw a guy spill all his Scrabble letters on the road, I asked him: Whats the word on the street?"]
 		const response = responses[Math.floor(Math.random() * responses.length)]
 
 		const embed = new EmbedBuilder()
