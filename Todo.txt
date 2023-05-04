@@ -1,3 +1,2 @@
-- Jokes
 - Image Scraper
 - Meme
