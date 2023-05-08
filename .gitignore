@@ -1,4 +1,4 @@
-.env
-.txt
 config.json
-Todo.txt
+.env
+*.txt
+/TODO
