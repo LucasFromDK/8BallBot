@@ -3,7 +3,7 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('roulette')
-		.setDescription('Rolls two numbers between 1 and 10, if its the same number you lose.')
+		.setDescription('Rolls a numbers between 1 and 36, if its the same number you win!')
         .addStringOption(option =>
 			option.setName('number')
 				.setDescription('Choose a number between 1 and 36.')
