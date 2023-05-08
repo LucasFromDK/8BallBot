@@ -16,9 +16,7 @@ module.exports = {
 			.setColor(0x5865F2)
 			.setTitle("Riddle")
 			.setFooter({ text: 'Did you manage to guess the answer?', iconURL: 'https://cdn.discordapp.com/avatars/1088016851403026462/06bd8b265d56024aa1e002e30f25a79a.png?size=1024' })
-			.addFields(
-				{ name: ' ', value: response },
-			);
+			.addFields({ name: ' ', value: response });
 
 		interaction.reply({ embeds: [embed] });
 	},
