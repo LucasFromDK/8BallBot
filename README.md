@@ -6,11 +6,6 @@ This bot can currently do the following:
 - Random Cat
 - Random Dog
 - Tell Jokes
-- Riddles (WIP)
+- Riddles (Very Limited Responces)
 - Check Ping
 - Urban Dictionary
-
-In the future the bot will be able to:
-- Send Memes
-- Play Music
-- Image Scraper
