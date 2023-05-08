@@ -10,7 +10,7 @@ client.once(Events.ClientReady, onReady);
 
 function onReady(c) {
 	console.log(`${c.user.tag} is now Online! 🥳 🎉`);
-	client.user.setActivity('The Magic 8 Ball 🎱 & Commands!', { type: ActivityType.Watching }); //Options: Watching, Playing, Streaming, Listening, Competing
+	client.user.setActivity('The Magic 8 Ball 🎱', { type: ActivityType.Watching }); //Options: Watching, Playing, Streaming, Listening, Competing
 	client.user.setStatus('online'); //Options: online, idle, dnd, invisible
 	};
 
