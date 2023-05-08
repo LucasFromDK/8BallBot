@@ -1,5 +1,4 @@
 # 8BallBot
-A Discord Bot
 
 This bot can currently do the following:
 - Magic 8Ball
@@ -9,3 +8,4 @@ This bot can currently do the following:
 - Riddles (Very Limited Responces)
 - Check Ping
 - Urban Dictionary
+- Roulette
