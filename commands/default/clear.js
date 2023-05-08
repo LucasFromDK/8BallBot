@@ -8,11 +8,14 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('clear')
     .setDescription('Clears a specified number of messages from the current channel.')
-    .addIntegerOption(option => option.setName('amount').setDescription('The number of messages to clear').setRequired(true))
-    .setDefaultPermission(false),
+    .setDefaultPermission(false)
+    .addIntegerOption(option => option.setName('amount')
+        .setDescription('The number of messages to clear')
+        .setRequired(true)),
   async execute(interaction) {
     // Check if the user executing the command or their roles are whitelisted
     if (!userWhitelist.includes(interaction.user.id) && !interaction.member.roles.cache.some(role => roleWhitelist.includes(role.id))) {
+        
         const embed = new EmbedBuilder()
         .setDescription(`You are not authorized to use this command!`)
         .setColor('#FF0000')
