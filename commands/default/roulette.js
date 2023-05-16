@@ -30,7 +30,7 @@ function drawWinner(numberOne, numberTwo) {
         const result = "Invalid number, please chose a number between **1** and **36**"
         return result
     } else if (numberOne != numberTwo) {
-        const result = `You lost, your number was: **${numberOne}**, winning number was: **${numberTwo}**, better luck next time!`;
+        const result = `You lost, your number was: **${numberOne}**, the winning number was: **${numberTwo}**, better luck next time!`;
         return result
      } else if (numberOne == numberTwo) {
          const result = `You win 🎉, you rolled a: **${numberOne}** and the winning number was also **${numberTwo}**!`;

@@ -14,7 +14,6 @@ module.exports = {
         .setImage("https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTU4ZGI3M2FlZTUzOTUwZTRmZTZlMTYwZThiNmQ0OWE2NmViOWM1MCZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/8MWdaFQEYEicGIkfHU/giphy.gif")
 		.setFooter({ text: 'Im running out of coins!', iconURL: 'https://cdn.discordapp.com/avatars/1088016851403026462/06bd8b265d56024aa1e002e30f25a79a.png?size=1024' })
 
-
 		await interaction.reply({ embeds: [embed] });
 	},
 };
